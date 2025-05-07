@@ -1,75 +1,189 @@
+*,
 *::before,
-*::after,
-*
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html{
-    font-size: 6px;
+html {
+  font-size: 6px;
 }
 
 @media (min-width: 700px) {
-    html{
-        font-size: 8px;
-    }
+  html {
+    font-size: 8px;
+  }
 }
 
 @media (min-width: 900px) {
-    html{
-        font-size: 10px;
-    }
+  html {
+    font-size: 10px;
+  }
 }
 
 html,
 body,
-.banner
-{
-    height: 100%;
+.banner {
+  height: 100%;
 }
 
-body{
-    font-size: 1.6rem;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 400;
+body {
+  font-size: 1.6rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  background: #111;
+  color: #fff;
+  overflow: hidden;
 }
 
-.banner{
-    display: grid;
-    place-items: center;
-    background-image: url('../images/banner.webp');
-    background-size: cover;
-    background-position: center top;
-    text-align: center;
-    padding: 15px;
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../images/banner.webp');
+  background-size: cover;
+  background-position: center top;
+  text-align: center;
+  padding: 15px;
 }
 
-.banner__title{
-    --text-stroke: 1px;
-    color: #ffffff;
-    font-size: 12rem;
-    font-weight: 800;
-    text-shadow:
-        calc(var(--text-stroke) * -1) calc(var(--text-stroke) * -1) 0px #000000,
-        calc(var(--text-stroke) * -1) 1px 0px #000000,
-        var(--text-stroke) calc(var(--text-stroke) * -1) 0px #000000,
-        var(--text-stroke) var(--text-stroke) 0px #000000,
-        0.8rem 0.6rem 0px #000000;
-    margin-bottom: 3rem;
+.banner__title {
+  --text-stroke: 1px;
+  color: #ffffff;
+  font-size: clamp(3rem, 8vw, 12rem);
+  font-weight: 800;
+  text-shadow:
+    calc(var(--text-stroke) * -1) calc(var(--text-stroke) * -1) 0px #000000,
+    calc(var(--text-stroke) * -1) 1px 0px #000000,
+    var(--text-stroke) calc(var(--text-stroke) * -1) 0px #000000,
+    var(--text-stroke) var(--text-stroke) 0px #000000,
+    0.8rem 0.6rem 0px #000000;
+  margin-bottom: 1rem;
+  line-height: 1.1;
 }
 
-@media (max-width: 699px){
-    .banner__title{
-        line-height: 1;
-    }
+@media (max-width: 699px) {
+  .banner__title {
+    line-height: 1.1;
+    font-size: 6rem;
+  }
 }
 
-.banner__text{
+#type,
+#title {
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #fff;
+  font-family: monospace;
+  display: inline-block;
+  line-height: 1.1;
+  font-size: clamp(3rem, 8vw, 10rem);
+  opacity: 0;
+}
+
+/* Desktop Typing Animation */
+#type {
+  animation: typing1 3s steps(25, end) forwards, blink 0.7s step-end 6;
+}
+
+#title {
+  animation: typing2 3s steps(13, end) forwards, blink 0.7s step-end 6;
+  animation-delay: 3.5s;
+}
+
+/* Keyframes */
+@keyframes typing1 {
+  from { width: 0; opacity: 1; }
+  to { width: 25ch; opacity: 1; }
+}
+
+@keyframes typing2 {
+  from { width: 0; opacity: 0; }
+  to { width: 13ch; opacity: 1; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile: Replace typing with fade-in */
+@media (max-width: 699px) {
+  #type,
+  #title {
+    animation: none;
+    border-right: none;
+    width: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+  }
+
+  #title {
+    animation-delay: 0.8s;
+  }
+}
+
+.banner__text {
     color: #000000;
     font-size: 2.8rem;
     max-width: 60rem;
     margin-left: auto;
     margin-right: auto;
+  }
+  
+.info {
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
 }
+.banner__icons {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.social-icons {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffffff;
+  font-size: 2.8rem;
+  text-align: center;
+  padding: 1rem;
+  }
+  
+  .social-icon {
+    color: #000000;
+    font-size: 3rem;
+    padding: 1rem;
+    text-align: center;
+    transition: color 0.3s;
+    text-decoration: none;
+  }
+  
+  .social-icon:hover {
+    color: #0f0; /* Green on hover */
+  }
+  
